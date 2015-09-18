@@ -80,7 +80,7 @@ function getWinner(playerMove,computerMove) {
                     break;
             }
     }
-        
+
     return winner;
 }
 
@@ -88,8 +88,52 @@ function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
-    // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
+    var playerMove;
+    var computerMove;
+    var winner;
+    var bestOfNum = 5;
+    /* This function should continue to play Rock Paper Scissors until either the player or the computer has won five times.
+    After each 'round', display some text in the console indicating who played what, who won, and what the current scoreboard looks like.
+    For example,
+    console.log('Player chose ' + playerMove + ' while Computer chose ' + computerMove);
+    console.log('The score is currently ' + playerWins + ' to ' + computerWins + '\n');
+    */
+
+    //while number of wins on either side are less than 5 (bestOfNum), continue to loop & play the game:
+    while ((playerWins<bestOfNum)&&(computerWins<bestOfNum)){
+        
+        playerMove=getPlayerMove(); //ask player for their move
+        computerMove=getComputerMove(); //get the computer's move
+        winner=getWinner(playerMove,computerMove); //calculate who has won
+        console.log('Player chose "' + playerMove + '" while Computer chose "' + computerMove + '".\n');
+
+        //increment number of wins & print result
+        switch (winner){
+            case 'tie':
+                console.log('It was a tie!\n');
+                break;
+            case 'player':
+                playerWins += 1;
+                console.log('The '+ winner + ' won.\n');
+                break;
+            case 'computer':
+                computerWins += 1;
+                console.log('The ' + winner + ' won.\n');
+                break;
+        }
+
+        console.log('The score is currently player:' + playerWins + ' to computer:' + computerWins + '.\n');
+        
+        if((playerWins != bestOfNum)&&(computerWins != bestOfNum)){
+            //here neither has reached the 'bestOfNum'(default 5) wins:
+            console.log('We will continue playing until we get to the best of ' + bestOfNum + '\n\n\n');
+        } else {
+            //here either one has 
+            console.log('The ' + winner + ' has won Rock Paper Scissors - best of '+bestOfNum+'!\n');
+        }
+
+
+    }
     return [playerWins, computerWins];
 }
 
